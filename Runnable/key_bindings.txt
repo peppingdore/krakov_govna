@@ -1,0 +1,188 @@
+[
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				C
+			]
+		}
+		action:{
+			type:Copy_Text
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				V
+			]
+		}
+		action:{
+			type:Paste_Text
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				X
+			]
+		}
+		action:{
+			type:Cut_Text
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				A
+			]
+		}
+		action:{
+			type:Select_All
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				Plus
+			]
+		}
+		action:{
+			type:Zoom_In
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				Minus
+			]
+		}
+		action:{
+			type:Zoom_Out
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				Mouse_Wheel_Up
+			]
+		}
+		action:{
+			type:Zoom_In
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				Mouse_Wheel_Down
+			]
+		}
+		action:{
+			type:Zoom_Out
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Alt,
+				F4
+			]
+		}
+		action:{
+			type:Exit
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				F6
+			]
+		}
+		action:{
+			type:Toggle_Usage_Of_DPI
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				F
+			]
+		}
+		action:{
+			type:Open_Search_Bar
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				Any_Control,
+				C
+			]
+		}
+		action:{
+			type:Interrupt
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+				0b00000000000000000000000000001110
+			]
+		}
+		action:{
+			type:Autocomplete
+			macro_string:""
+		}
+	},
+	{
+		binding:{
+			keys:[
+			]
+		}
+		action:{
+			type:Run_A_Macro
+			macro_string:"dfasdadsadasdasd
+
+sda
+sda
+
+sd
+s
+d
+sd
+sd
+sd
+ds
+ds
+ds
+sdsd
+sda
+sd
+sd
+sd
+ds
+dsds
+ds
+a"
+		}
+	}
+]

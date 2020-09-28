@@ -1,0 +1,7 @@
+:text_font_face "NotoMono"
+:text_font_face_size 16
+:saved_command_history_entries_count 48
+:keep_scrolling_to_the_bottom_if_already_there true
+:SACRIFICE_ONE_CPU_CORE_FOR_TRUE_PC_GAMING_EXPIRIENCE_FPS false
+:full_crash_dump true
+:show_fps true
