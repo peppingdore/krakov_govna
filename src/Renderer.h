@@ -64,24 +64,8 @@ struct Renderer
 	int framebuffer_width;
 	int framebuffer_height;
 
-	Rect framebuffer_margin = Rect::make(0, 0, 0, 0); // Used on Windows to fix maximized window being outside of a monitor for 8 pixels.
-
 	float scaling = 1.0;
 	bool use_dpi_scaling = true;
-
-
-	constexpr static bool use_vulkan = true;
-
-
-	constexpr static int channels_count = 4;
-	
-
-	u8* framebuffer;
-	u64 framebuffer_size;
-
-	u32 mask_buffer_bytes_per_line;
-	u8* mask_buffer;
-	u64 mask_buffer_size;
 
 
 	struct Mask
@@ -97,14 +81,7 @@ struct Renderer
 	Texture* find_texture(Unicode_String name);
 	Texture* load_texture(Unicode_String path);
 
-
-
-	void set_pixel(int x, int y, rgba rgba);
-	void set_pixel_checked(int x, int y, rgba rgba);
-	void set_pixel_blended_and_checked(int x, int y, rgba rgba);
-
 	void recalculate_mask_buffer();
-	bool mask_buffer_pixel(int x, int y);
 
 	void push_mask(Mask mask)
 	{
@@ -121,7 +98,6 @@ struct Renderer
 
 	void draw_texture(Rect rect, Texture* texture);
 
-	void draw_rect_software(int left_x, int bottom_y, int right_x, int top_y, rgba rgba, bool blended);
 	void draw_rect(Rect rect, rgba rgba);
 	void draw_rect_with_alpha_fade(Rect rect, rgba rgba, int alpha_left, int alpha_right);
 
@@ -145,11 +121,10 @@ struct Renderer
 
 
 
-	void draw_glyph(Glyph* glyph, int x, int y, rgba color, bool gamma_correct);
+	void draw_glyph(Glyph* glyph, int x, int y, rgba color);
 
 	void draw_text(Font::Face* face, Unicode_String str, int x, int y, rgba color = rgba(255, 255, 255, 255));
 	void draw_text_culled(Font::Face* face, Unicode_String str, int x, int y, Rect cull_rect, rgba color = rgba(255, 255, 255, 255));
-
 
 
 	void clear();
@@ -159,6 +134,8 @@ struct Renderer
 	void set_sizes_from_framebuffer_size(int new_framebuffer_width, int new_framebuffer_height);
 
 	void init(int initial_width, int initial_height);
+
+	bool should_resize();
 
 	void frame_begin();
 	void frame_end();
@@ -171,13 +148,6 @@ struct Renderer
 	}
 };
 inline Renderer renderer;
-
-
-inline bool do_need_to_gamma_correct(Font::Face* face)
-{
-	return face->size <= 24;
-}
-
 
 struct Scoped_Mask
 {

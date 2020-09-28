@@ -276,7 +276,6 @@ bool UI::button(Rect rect, rgba color, UI_ID ui_id)
 
 
 	bool result = false;
-	bool do_need_to_redraw = false;
 
 
 	if (down == ui_id)
@@ -290,7 +289,6 @@ bool UI::button(Rect rect, rgba color, UI_ID ui_id)
 	if ((hover != ui_id && state->darkness) || (state->darkness > 0.3001))
 	{
 		state->darkness = clamp<double>(0, 1, state->darkness - frame_time * 5.0);
-		do_need_to_redraw = true;
 	}
 
 	if (hover == ui_id)
@@ -300,7 +298,6 @@ bool UI::button(Rect rect, rgba color, UI_ID ui_id)
 		if (state->darkness < 0.3)
 		{
 			state->darkness = 0.3;
-			do_need_to_redraw = true;
 		}
 	}
 
@@ -308,11 +305,6 @@ bool UI::button(Rect rect, rgba color, UI_ID ui_id)
 	if (is_point_inside_active_zone(input.mouse_x, input.mouse_y) && rect.is_point_inside(input.mouse_x, input.mouse_y) && current_layer >= current_hovering_layer)
 	{
 		im_hovering(ui_id);
-	}
-
-	if (do_need_to_redraw)
-	{
-		need_to_redraw_next_frame(code_location());
 	}
 
 
@@ -421,7 +413,7 @@ bool UI::checkbox(Rect rect, bool value, UI_ID ui_id)
 		auto face = get_font_face();
 		Glyph tick_glyph = face->request_glyph(U'\x2713');
 
-		renderer.draw_glyph(&tick_glyph, rect.center_x() - tick_glyph.width / 2, rect.center_y() - tick_glyph.height / 2, parameters.checkbox_tick_color, do_need_to_gamma_correct(face));
+		renderer.draw_glyph(&tick_glyph, rect.center_x() - tick_glyph.width / 2, rect.center_y() - tick_glyph.height / 2, parameters.checkbox_tick_color);
 	}
 
 	return result;
@@ -1198,7 +1190,7 @@ bool UI::text_editor(Rect rect, Unicode_String text, Unicode_String* out_result,
 				{
 					Glyph glyph = glyph_iterator.current_glyph;
 					// :GlyphLocalCoords:
-					renderer.draw_glyph(&glyph, x + glyph.left_offset, y - (glyph.height - glyph.top_offset), text_color, do_need_to_gamma_correct(face));
+					renderer.draw_glyph(&glyph, x + glyph.left_offset, y - (glyph.height - glyph.top_offset), text_color);
 				}
 			}
 		}
@@ -1528,10 +1520,6 @@ Scroll_Region_Result UI::scroll_region(Rect rect, int content_height, int conten
 	Rect horizontal_scrollbar_rect;
 	Rect horizontal_scrollgrip_rect;
 
-	if (ui.up == ui_id)
-	{
-		need_to_redraw_next_frame(code_location());		
-	}
 
 
 	if (do_show_vertical_scrollbar)

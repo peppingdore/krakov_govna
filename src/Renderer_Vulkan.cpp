@@ -843,7 +843,7 @@ void Vulkan::load_shaders()
 {
 	ZoneScoped;
 
-	Unicode_String shaders_path = path_concat(init_arena, typer_directory, Unicode_String(U"shaders"));
+	Unicode_String shaders_path = path_concat(init_arena, executable_directory, Unicode_String(U"shaders"));
 
 	auto load_shader = [&](Unicode_String name, VkShaderModule* result_module)
 	{
@@ -2851,8 +2851,6 @@ void Vulkan::execute_commands()
 
 void Vulkan::draw_texture(Rect rect, Texture* texture)
 {
-	assert(redraw_current_frame);
-
 	commands.add({
 		.type = Vulkan_Command_Type::Draw_Texture,
 
@@ -2865,8 +2863,6 @@ void Vulkan::draw_texture(Rect rect, Texture* texture)
 
 void Vulkan::draw_rect(Rect rect, rgba color)
 {
-	assert(redraw_current_frame);
-
 	// ZoneScoped;
 
 	commands.add({
@@ -2882,8 +2878,6 @@ void Vulkan::draw_rect(Rect rect, rgba color)
 
 void Vulkan::draw_faded_rect(Rect rect, rgba color, int alpha_left, int alpha_right)
 {
-	assert(redraw_current_frame);
-
 	// ZoneScoped;
 
 	commands.add({
@@ -2901,8 +2895,6 @@ void Vulkan::draw_faded_rect(Rect rect, rgba color, int alpha_left, int alpha_ri
 
 void Vulkan::draw_line(int x0, int y0, int x1, int y1, rgba color)
 {
-	assert(redraw_current_frame);
-
 	commands.add({
 		.type = Vulkan_Command_Type::Draw_Line,
 
@@ -2922,8 +2914,6 @@ void Vulkan::draw_line(int x0, int y0, int x1, int y1, rgba color)
 
 void Vulkan::draw_glyph(Glyph* glyph, int x, int y, rgba color)
 {
-	assert(redraw_current_frame);
-
 	// ZoneScoped;
 
 	if (glyph->width == 0 || glyph->height == 0) return;
@@ -2963,8 +2953,6 @@ bool Vulkan::bind_pipeline(Pipeline* pipeline)
 
 void Vulkan::recalculate_mask_buffer(Dynamic_Array<Renderer::Mask> mask_stack)
 {
-	assert(redraw_current_frame);
-
 	ZoneScoped;
 
 	commands.add({

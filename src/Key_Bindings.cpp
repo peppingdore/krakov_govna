@@ -100,6 +100,7 @@ bool Key_Bindings::is_action_type_triggered(Action_Type action_type)
 }
 
 
+#if 0
 void Key_Bindings::process_key_binding_recording()
 {
 	// @TODO: show actions with current binding.
@@ -243,17 +244,31 @@ void Key_Bindings::process_key_binding_recording()
 #endif
 }
 
+
+void Key_Bindings::begin_key_binding_recording(UI_ID ui_id)
+{
+	assert(key_binding_recording_ui_id == invalid_ui_id);
+
+	key_binding_recording_ui_id = ui.copy_ui_id(ui_id, ui.current_arena_allocator);
+
+	recor.keys.clear();
+}
+#endif
+
 void Key_Bindings::do_frame()
 {
 	keys_used_by_triggered_actions.clear();
 	triggered_actions.clear();
 
+// @TODO: enable key binding recording.
+#if 0
 	if (key_binding_recording_ui_id != invalid_ui_id)
 	{
 		process_key_binding_recording();
 	}
 	else
 	{
+#endif
 		recorded_key_binding_ui_id = invalid_ui_id;
 
 		for (auto& item: bound_actions)
@@ -269,7 +284,9 @@ void Key_Bindings::do_frame()
 				});
 			}
 		}
+#if 0
 	}
+#endif
 
 
 	for (auto& triggered_action: triggered_actions)
@@ -278,19 +295,12 @@ void Key_Bindings::do_frame()
 	}
 }
 
-void Key_Bindings::begin_key_binding_recording(UI_ID ui_id)
-{
-	assert(key_binding_recording_ui_id == invalid_ui_id);
 
-	key_binding_recording_ui_id = ui.copy_ui_id(ui_id, ui.current_arena_allocator);
-
-	recorded_binding.keys.clear();
-}
 
 
 bool Key_Bindings::load_bindings()
 {
-	Unicode_String path = path_concat(frame_allocator, typer_directory, bindings_file_name);
+	Unicode_String path = path_concat(frame_allocator, executable_directory, bindings_file_name);
 	File file = open_file(frame_allocator, path, FILE_READ);
 
 	if (!file.succeeded_to_open())
@@ -330,7 +340,7 @@ void Key_Bindings::save_bindings()
 
 	assert(threading.is_main_thread());
 
-	Unicode_String path = path_concat(frame_allocator, typer_directory, bindings_file_name);
+	Unicode_String path = path_concat(frame_allocator, executable_directory, bindings_file_name);
 	File file = open_file(frame_allocator, path, FILE_WRITE | FILE_CREATE_NEW);
 
 	if (!file.succeeded_to_open())

@@ -120,15 +120,7 @@ def main():
 		build_options.system = 'win32'
 		build_options.abi = 'msvc'
 
-		build_options.executable_path = 'Runnable/Typerminal.exe'
-
-	else:
-		build_options.architecture = 'x86_64'
-		build_options.vendor = 'pc'
-		build_options.system = 'linux'
-		build_options.abi = 'gnu'
-
-		build_options.executable_path = 'Runnable/Typerminal.elf'
+		build_options.executable_path = 'Runnable/Zazhopinsk.exe'
 
 
 
@@ -143,14 +135,7 @@ def main():
 			'Renderer_Vulkan.cpp',
 			'Video_Memory_Allocator.cpp',
 			'Settings.cpp',
-			'Python_Debugger.cpp',
-			'Python_Interp.cpp',
 			'Input.cpp',
-			'Output_Processor.cpp',
-			'Input_Processor.cpp',
-			'Terminal_IO.cpp',
-			'Terminal.cpp',
-			'Typer_UI.cpp',
 			'Key_Bindings.cpp',
 		]
 
@@ -163,48 +148,10 @@ def main():
 		build_options.include_directories.append('b_lib/icu')
 
 
-	if os.name == 'posix':
-		build_options.include_directories.append('python_headers')
-
-
-
 	if os.name == 'nt':
 		build_options.lib_directories = [
 			'lib/windows'
 		]
-	elif os.name == 'posix':
-		build_options.lib_directories = [
-			'lib/linux',
-			'src/b_lib/clip/build' # For libclip.a
-		]
-
-		build_options.libraries = [
-			Library('X11'),
-			Library('vulkan'),
-			Library('pthread'),
-			Library('libpython3.8.a', link_statically = True),
-			Library('dl'),
-			Library('libutil.so', link_statically = True),
-			Library('libfreetype.so', link_statically = True),
-			Library('libuuid.so', link_statically = True),
-
-			Library('icuuc'),
-			Library('z'),
-			Library('ssl'),
-			Library('crypto'),
-			Library('crypt'),
-			Library('nsl'),
-			Library('curses'),
-			Library('panel'),
-			Library('xcb'),
-
-			Library('libclip.a', link_statically = True)
-		]
-
-		build_options.additional_linker_flags.append("-rdynamic")
-		build_options.additional_clang_flags.append("-fPIC")
-
-
 
 
 	build_options.defines = [
@@ -229,7 +176,7 @@ def main():
 	if os.name == 'nt':
 		build_options.use_clang_cl = True
 
-		build_options.use_windows_dynamic_crt = True
+		build_options.use_windows_dynamic_crt = False
 		build_options.use_windows_crt_debug_version = build_type != Build_Type.Shipment
 
 		build_options.use_windows_subsystem = True

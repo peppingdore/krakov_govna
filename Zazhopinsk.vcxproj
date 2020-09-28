@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{3D61FB0C-314A-4BAB-A47C-87E1E4D76FA2}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)Runnable</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)Runnable</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\b_lib\clip\clip.cpp" />
+    <ClCompile Include="src\b_lib\clip\clip_none.cpp" />
+    <ClCompile Include="src\b_lib\clip\clip_win.cpp" />
+    <ClCompile Include="src\b_lib\clip\clip_x11.cpp" />
+    <ClCompile Include="src\b_lib\clip\image.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\Key_Bindings.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Renderer_Vulkan.cpp" />
+    <ClCompile Include="src\Settings.cpp" />
+    <ClCompile Include="src\tracy\capture\src\capture.cpp" />
+    <ClCompile Include="src\tracy\capture\src\getopt.c" />
+    <ClCompile Include="src\tracy\client\TracyCallstack.cpp" />
+    <ClCompile Include="src\tracy\client\TracyDxt1.cpp" />
+    <ClCompile Include="src\tracy\client\TracyProfiler.cpp" />
+    <ClCompile Include="src\tracy\client\TracySysTime.cpp" />
+    <ClCompile Include="src\tracy\client\TracySysTrace.cpp" />
+    <ClCompile Include="src\tracy\client\tracy_rpmalloc.cpp" />
+    <ClCompile Include="src\tracy\common\TracySocket.cpp" />
+    <ClCompile Include="src\tracy\common\TracySystem.cpp" />
+    <ClCompile Include="src\tracy\common\tracy_lz4.cpp" />
+    <ClCompile Include="src\tracy\common\tracy_lz4hc.cpp" />
+    <ClCompile Include="src\tracy\examples\toypathtracer\source\enkits\TaskScheduler.cpp" />
+    <ClCompile Include="src\tracy\examples\toypathtracer\source\enkits\TaskScheduler_c.cpp" />
+    <ClCompile Include="src\tracy\examples\toypathtracer\source\Maths.cpp" />
+    <ClCompile Include="src\tracy\examples\toypathtracer\source\Test.cpp" />
+    <ClCompile Include="src\tracy\examples\toypathtracer\windows\TestWin.cpp" />
+    <ClCompile Include="src\tracy\extra\color.cpp" />
+    <ClCompile Include="src\tracy\extra\dxt1divtable.c" />
+    <ClCompile Include="src\tracy\extra\dxt1table.c" />
+    <ClCompile Include="src\tracy\extra\systrace\tracy_systrace.c" />
+    <ClCompile Include="src\tracy\extra\x11_colors.c" />
+    <ClCompile Include="src\tracy\imguicolortextedit\TextEditor.cpp" />
+    <ClCompile Include="src\tracy\imgui\imgui.cpp" />
+    <ClCompile Include="src\tracy\imgui\imgui_demo.cpp" />
+    <ClCompile Include="src\tracy\imgui\imgui_draw.cpp" />
+    <ClCompile Include="src\tracy\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\tracy\import-chrome\src\import-chrome.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\alloc.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\dwarf.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\elf.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\fileline.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\macho.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\mmapio.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\posix.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\sort.cpp" />
+    <ClCompile Include="src\tracy\libbacktrace\state.cpp" />
+    <ClCompile Include="src\tracy\nfd\nfd_common.c" />
+    <ClCompile Include="src\tracy\nfd\nfd_gtk.c" />
+    <ClCompile Include="src\tracy\nfd\nfd_win.cpp" />
+    <ClCompile Include="src\tracy\profiler\libs\gl3w\gl\gl3w.c" />
+    <ClCompile Include="src\tracy\profiler\src\imgui_freetype.cpp" />
+    <ClCompile Include="src\tracy\profiler\src\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\tracy\profiler\src\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\tracy\profiler\src\main.cpp" />
+    <ClCompile Include="src\tracy\profiler\src\ResolvService.cpp" />
+    <ClCompile Include="src\tracy\profiler\src\winmain.cpp" />
+    <ClCompile Include="src\tracy\profiler\src\winmainArchDiscovery.cpp" />
+    <ClCompile Include="src\tracy\server\TracyBadVersion.cpp" />
+    <ClCompile Include="src\tracy\server\TracyMemory.cpp" />
+    <ClCompile Include="src\tracy\server\TracyMmap.cpp" />
+    <ClCompile Include="src\tracy\server\TracyPrint.cpp" />
+    <ClCompile Include="src\tracy\server\TracyStorage.cpp" />
+    <ClCompile Include="src\tracy\server\TracyTaskDispatch.cpp" />
+    <ClCompile Include="src\tracy\server\TracyTexture.cpp" />
+    <ClCompile Include="src\tracy\server\TracyThreadCompress.cpp" />
+    <ClCompile Include="src\tracy\server\TracyUserData.cpp" />
+    <ClCompile Include="src\tracy\server\TracyView.cpp" />
+    <ClCompile Include="src\tracy\server\TracyWorker.cpp" />
+    <ClCompile Include="src\tracy\server\tracy_xxhash.c" />
+    <ClCompile Include="src\tracy\test\test.cpp" />
+    <ClCompile Include="src\tracy\TracyClient.cpp" />
+    <ClCompile Include="src\tracy\update\src\update.cpp" />
+    <ClCompile Include="src\tracy\zstd\debug.c" />
+    <ClCompile Include="src\tracy\zstd\entropy_common.c" />
+    <ClCompile Include="src\tracy\zstd\error_private.c" />
+    <ClCompile Include="src\tracy\zstd\fse_compress.c" />
+    <ClCompile Include="src\tracy\zstd\fse_decompress.c" />
+    <ClCompile Include="src\tracy\zstd\hist.c" />
+    <ClCompile Include="src\tracy\zstd\huf_compress.c" />
+    <ClCompile Include="src\tracy\zstd\huf_decompress.c" />
+    <ClCompile Include="src\tracy\zstd\pool.c" />
+    <ClCompile Include="src\tracy\zstd\threading.c" />
+    <ClCompile Include="src\tracy\zstd\xxhash.c" />
+    <ClCompile Include="src\tracy\zstd\zstdmt_compress.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_common.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_compress.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_compress_literals.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_compress_sequences.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_compress_superblock.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_ddict.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_decompress.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_decompress_block.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_double_fast.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_fast.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_lazy.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_ldm.c" />
+    <ClCompile Include="src\tracy\zstd\zstd_opt.c" />
+    <ClCompile Include="src\UI.cpp" />
+    <ClCompile Include="src\Unity_Build.cpp" />
+    <ClCompile Include="src\Video_Memory_Allocator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\b_lib\Allocator.h" />
+    <ClInclude Include="src\b_lib\Arena_Allocator.h" />
+    <ClInclude Include="src\b_lib\Array_Map.h" />
+    <ClInclude Include="src\b_lib\Basic.h" />
+    <ClInclude Include="src\b_lib\Bucket_Array.h" />
+    <ClInclude Include="src\b_lib\clip\clip.h" />
+    <ClInclude Include="src\b_lib\clip\clip_common.h" />
+    <ClInclude Include="src\b_lib\clip\clip_lock_impl.h" />
+    <ClInclude Include="src\b_lib\clip\clip_x11_png.h" />
+    <ClInclude Include="src\b_lib\Collection.h" />
+    <ClInclude Include="src\b_lib\Color.h" />
+    <ClInclude Include="src\b_lib\Context.h" />
+    <ClInclude Include="src\b_lib\Cursor.h" />
+    <ClInclude Include="src\b_lib\Dynamic_Array.h" />
+    <ClInclude Include="src\b_lib\File.h" />
+    <ClInclude Include="src\b_lib\Font.h" />
+    <ClInclude Include="src\b_lib\Format_String.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\config\ftconfig.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\config\ftheader.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\config\ftmodule.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\config\ftoption.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\config\ftstdlib.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\freetype.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftadvanc.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftbbox.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftbdf.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftbitmap.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftbzip2.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftcache.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftchapters.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftcid.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftdriver.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\fterrdef.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\fterrors.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftfntfmt.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftgasp.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftglyph.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftgxval.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftgzip.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftimage.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftincrem.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftlcdfil.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftlist.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftlzw.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftmac.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftmm.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftmodapi.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftmoderr.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftotval.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftoutln.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftparams.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftpfr.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftrender.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftsizes.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftsnames.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftstroke.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftsynth.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftsystem.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\fttrigon.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\fttypes.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ftwinfnt.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\t1tables.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\ttnameid.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\tttables.h" />
+    <ClInclude Include="src\b_lib\ft\freetype\tttags.h" />
+    <ClInclude Include="src\b_lib\ft\ft2build.h" />
+    <ClInclude Include="src\b_lib\Hash.h" />
+    <ClInclude Include="src\b_lib\Hash_Map.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\alphaindex.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\appendable.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\basictz.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\brkiter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\bytestream.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\bytestrie.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\bytestriebuilder.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\calendar.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\caniter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\casemap.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\char16ptr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\chariter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\choicfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\coleitr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\coll.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\compactdecimalformat.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\curramt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\currpinf.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\currunit.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\datefmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dbbi.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dcfmtsym.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\decimfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\docmain.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dtfmtsym.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dtintrv.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dtitvfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dtitvinf.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dtptngen.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\dtrule.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\edits.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\enumset.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\errorcode.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\fieldpos.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\filteredbrk.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\fmtable.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\format.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\formattedvalue.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\fpositer.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\gender.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\gregocal.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\icudataver.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\icuplug.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\idna.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\listformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\localebuilder.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\localematcher.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\localpointer.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\locdspnm.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\locid.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\measfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\measunit.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\measure.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\messagepattern.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\msgfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\normalizer2.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\normlzr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\nounit.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\numberformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\numberrangeformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\numfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\numsys.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\parseerr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\parsepos.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\platform.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\plurfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\plurrule.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ptypes.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\putil.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\rbbi.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\rbnf.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\rbtz.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\regex.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\region.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\reldatefmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\rep.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\resbund.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\schriter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\scientificnumberformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\search.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\selfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\simpleformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\simpletz.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\smpdtfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\sortkey.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\std_string.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\strenum.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\stringoptions.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\stringpiece.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\stringtriebuilder.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\stsearch.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\symtable.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tblcoll.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\timezone.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tmunit.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tmutamt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tmutfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\translit.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tzfmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tznames.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tzrule.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\tztrans.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ubidi.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ubiditransform.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ubrk.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucal.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucasemap.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucat.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uchar.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucharstrie.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucharstriebuilder.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uchriter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uclean.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucnv.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucnvsel.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucnv_cb.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucnv_err.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucol.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucoleitr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uconfig.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucpmap.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucptrie.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucsdet.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ucurr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\udat.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\udata.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\udateintervalformat.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\udatpg.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\udisplaycontext.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uenum.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ufieldpositer.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uformattable.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uformattedvalue.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ugender.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uidna.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uiter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uldnames.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ulistformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uloc.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ulocdata.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\umachine.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\umisc.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\umsg.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\umutablecptrie.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unifilt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unifunct.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unimatch.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unirepl.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uniset.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unistr.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unorm.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unorm2.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unum.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unumberformatter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\unumsys.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uobject.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\upluralrules.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uregex.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uregion.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ureldatefmt.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\urename.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\urep.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ures.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uscript.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\usearch.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uset.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\usetiter.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ushape.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uspoof.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\usprep.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ustdio.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ustream.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ustring.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\ustringtrie.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utext.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utf.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utf16.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utf32.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utf8.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utf_old.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utmscale.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utrace.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utrans.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\utypes.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uvernum.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\uversion.h" />
+    <ClInclude Include="src\b_lib\icu\unicode\vtzone.h" />
+    <ClInclude Include="src\b_lib\Log.h" />
+    <ClInclude Include="src\b_lib\Math.h" />
+    <ClInclude Include="src\b_lib\OS_Clipboard.h" />
+    <ClInclude Include="src\b_lib\Reflection.h" />
+    <ClInclude Include="src\b_lib\String.h" />
+    <ClInclude Include="src\b_lib\String_Builder.h" />
+    <ClInclude Include="src\b_lib\String_Conversion.h" />
+    <ClInclude Include="src\b_lib\Text_Editor.h" />
+    <ClInclude Include="src\b_lib\Threading.h" />
+    <ClInclude Include="src\b_lib\Time_Measurer.h" />
+    <ClInclude Include="src\b_lib\Tokenizer.h" />
+    <ClInclude Include="src\b_lib\Tree.h" />
+    <ClInclude Include="src\b_lib\UUID.h" />
+    <ClInclude Include="src\b_lib\Windows_Cursor.h" />
+    <ClInclude Include="src\Ease_Functions.h" />
+    <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\Key_Bindings.h" />
+    <ClInclude Include="src\Main.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\Renderer_Vulkan.h" />
+    <ClInclude Include="src\Settings.h" />
+    <ClInclude Include="src\shaders\uniform.glsl.h" />
+    <ClInclude Include="src\stb_image.h" />
+    <ClInclude Include="src\tracy\capture\src\getopt.h" />
+    <ClInclude Include="src\tracy\client\TracyArmCpuTable.hpp" />
+    <ClInclude Include="src\tracy\client\TracyCallstack.h" />
+    <ClInclude Include="src\tracy\client\TracyCallstack.hpp" />
+    <ClInclude Include="src\tracy\client\TracyDxt1.hpp" />
+    <ClInclude Include="src\tracy\client\TracyFastVector.hpp" />
+    <ClInclude Include="src\tracy\client\TracyLock.hpp" />
+    <ClInclude Include="src\tracy\client\TracyProfiler.hpp" />
+    <ClInclude Include="src\tracy\client\TracyScoped.hpp" />
+    <ClInclude Include="src\tracy\client\TracySysTime.hpp" />
+    <ClInclude Include="src\tracy\client\TracySysTrace.hpp" />
+    <ClInclude Include="src\tracy\client\TracySysTracePayload.hpp" />
+    <ClInclude Include="src\tracy\client\TracyThread.hpp" />
+    <ClInclude Include="src\tracy\client\tracy_concurrentqueue.h" />
+    <ClInclude Include="src\tracy\client\tracy_rpmalloc.hpp" />
+    <ClInclude Include="src\tracy\common\TracyAlign.hpp" />
+    <ClInclude Include="src\tracy\common\TracyAlloc.hpp" />
+    <ClInclude Include="src\tracy\common\TracyApi.h" />
+    <ClInclude Include="src\tracy\common\TracyColor.hpp" />
+    <ClInclude Include="src\tracy\common\TracyForceInline.hpp" />
+    <ClInclude Include="src\tracy\common\TracyMutex.hpp" />
+    <ClInclude Include="src\tracy\common\TracyProtocol.hpp" />
+    <ClInclude Include="src\tracy\common\TracyQueue.hpp" />
+    <ClInclude Include="src\tracy\common\TracySocket.hpp" />
+    <ClInclude Include="src\tracy\common\TracySystem.hpp" />
+    <ClInclude Include="src\tracy\common\tracy_benaphore.h" />
+    <ClInclude Include="src\tracy\common\tracy_lz4.hpp" />
+    <ClInclude Include="src\tracy\common\tracy_lz4hc.hpp" />
+    <ClInclude Include="src\tracy\common\tracy_sema.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\Config.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\enkits\Atomics.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\enkits\LockLessMultiReadPipe.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\enkits\TaskScheduler.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\enkits\TaskScheduler_c.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\enkits\Threads.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\Maths.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\MathSimd.h" />
+    <ClInclude Include="src\tracy\examples\toypathtracer\source\Test.h" />
+    <ClInclude Include="src\tracy\imguicolortextedit\TextEditor.h" />
+    <ClInclude Include="src\tracy\imgui\imconfig.h" />
+    <ClInclude Include="src\tracy\imgui\imgui.h" />
+    <ClInclude Include="src\tracy\imgui\imgui_internal.h" />
+    <ClInclude Include="src\tracy\imgui\imstb_rectpack.h" />
+    <ClInclude Include="src\tracy\imgui\imstb_textedit.h" />
+    <ClInclude Include="src\tracy\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\tracy\import-chrome\src\json.hpp" />
+    <ClInclude Include="src\tracy\libbacktrace\backtrace.hpp" />
+    <ClInclude Include="src\tracy\libbacktrace\config.h" />
+    <ClInclude Include="src\tracy\libbacktrace\internal.hpp" />
+    <ClInclude Include="src\tracy\nfd\common.h" />
+    <ClInclude Include="src\tracy\nfd\nfd.h" />
+    <ClInclude Include="src\tracy\nfd\nfd_common.h" />
+    <ClInclude Include="src\tracy\profiler\libs\gl3w\gl\gl3w.h" />
+    <ClInclude Include="src\tracy\profiler\libs\gl3w\gl\glcorearb.h" />
+    <ClInclude Include="src\tracy\profiler\src\Arimo.hpp" />
+    <ClInclude Include="src\tracy\profiler\src\Cousine.hpp" />
+    <ClInclude Include="src\tracy\profiler\src\FontAwesomeSolid.hpp" />
+    <ClInclude Include="src\tracy\profiler\src\icon.hpp" />
+    <ClInclude Include="src\tracy\profiler\src\imgui_freetype.h" />
+    <ClInclude Include="src\tracy\profiler\src\imgui_impl_glfw.h" />
+    <ClInclude Include="src\tracy\profiler\src\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\tracy\profiler\src\ResolvService.hpp" />
+    <ClInclude Include="src\tracy\profiler\src\stb_image.h" />
+    <ClInclude Include="src\tracy\server\IconsFontAwesome5.h" />
+    <ClInclude Include="src\tracy\server\TracyBadVersion.hpp" />
+    <ClInclude Include="src\tracy\server\TracyBuzzAnim.hpp" />
+    <ClInclude Include="src\tracy\server\TracyCharUtil.hpp" />
+    <ClInclude Include="src\tracy\server\TracyDecayValue.hpp" />
+    <ClInclude Include="src\tracy\server\TracyEvent.hpp" />
+    <ClInclude Include="src\tracy\server\TracyFileHeader.hpp" />
+    <ClInclude Include="src\tracy\server\TracyFileRead.hpp" />
+    <ClInclude Include="src\tracy\server\TracyFilesystem.hpp" />
+    <ClInclude Include="src\tracy\server\TracyFileWrite.hpp" />
+    <ClInclude Include="src\tracy\server\TracyImGui.hpp" />
+    <ClInclude Include="src\tracy\server\TracyMemory.hpp" />
+    <ClInclude Include="src\tracy\server\TracyMmap.hpp" />
+    <ClInclude Include="src\tracy\server\TracyPopcnt.hpp" />
+    <ClInclude Include="src\tracy\server\TracyPrint.hpp" />
+    <ClInclude Include="src\tracy\server\TracyShortPtr.hpp" />
+    <ClInclude Include="src\tracy\server\TracySlab.hpp" />
+    <ClInclude Include="src\tracy\server\TracySort.hpp" />
+    <ClInclude Include="src\tracy\server\TracyStorage.hpp" />
+    <ClInclude Include="src\tracy\server\TracyStringDiscovery.hpp" />
+    <ClInclude Include="src\tracy\server\TracyTaskDispatch.hpp" />
+    <ClInclude Include="src\tracy\server\TracyTexture.hpp" />
+    <ClInclude Include="src\tracy\server\TracyThreadCompress.hpp" />
+    <ClInclude Include="src\tracy\server\TracyUserData.hpp" />
+    <ClInclude Include="src\tracy\server\TracyVarArray.hpp" />
+    <ClInclude Include="src\tracy\server\TracyVector.hpp" />
+    <ClInclude Include="src\tracy\server\TracyVersion.hpp" />
+    <ClInclude Include="src\tracy\server\TracyView.hpp" />
+    <ClInclude Include="src\tracy\server\TracyViewData.hpp" />
+    <ClInclude Include="src\tracy\server\TracyWorker.hpp" />
+    <ClInclude Include="src\tracy\server\TracyYield.hpp" />
+    <ClInclude Include="src\tracy\server\tracy_pdqsort.h" />
+    <ClInclude Include="src\tracy\server\tracy_robin_hood.h" />
+    <ClInclude Include="src\tracy\server\tracy_xxh3.h" />
+    <ClInclude Include="src\tracy\server\tracy_xxhash.h" />
+    <ClInclude Include="src\tracy\test\stb_image.h" />
+    <ClInclude Include="src\tracy\Tracy.hpp" />
+    <ClInclude Include="src\tracy\TracyC.h" />
+    <ClInclude Include="src\tracy\TracyLua.hpp" />
+    <ClInclude Include="src\tracy\TracyOpenGL.hpp" />
+    <ClInclude Include="src\tracy\TracyVulkan.hpp" />
+    <ClInclude Include="src\tracy\zstd\bitstream.h" />
+    <ClInclude Include="src\tracy\zstd\compiler.h" />
+    <ClInclude Include="src\tracy\zstd\cpu.h" />
+    <ClInclude Include="src\tracy\zstd\debug.h" />
+    <ClInclude Include="src\tracy\zstd\error_private.h" />
+    <ClInclude Include="src\tracy\zstd\fse.h" />
+    <ClInclude Include="src\tracy\zstd\hist.h" />
+    <ClInclude Include="src\tracy\zstd\huf.h" />
+    <ClInclude Include="src\tracy\zstd\mem.h" />
+    <ClInclude Include="src\tracy\zstd\pool.h" />
+    <ClInclude Include="src\tracy\zstd\threading.h" />
+    <ClInclude Include="src\tracy\zstd\xxhash.h" />
+    <ClInclude Include="src\tracy\zstd\zstd.h" />
+    <ClInclude Include="src\tracy\zstd\zstdmt_compress.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_compress_internal.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_compress_literals.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_compress_sequences.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_compress_superblock.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_cwksp.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_ddict.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_decompress_block.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_decompress_internal.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_double_fast.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_errors.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_fast.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_internal.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_lazy.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_ldm.h" />
+    <ClInclude Include="src\tracy\zstd\zstd_opt.h" />
+    <ClInclude Include="src\Tracy_Header.h" />
+    <ClInclude Include="src\UI.h" />
+    <ClInclude Include="src\Video_Memory_Allocator.h" />
+    <ClInclude Include="src\vulkan\GLSL.std.450.h" />
+    <ClInclude Include="src\vulkan\spirv.h" />
+    <ClInclude Include="src\vulkan\spirv.hpp" />
+    <ClInclude Include="src\vulkan\vk_icd.h" />
+    <ClInclude Include="src\vulkan\vk_layer.h" />
+    <ClInclude Include="src\vulkan\vk_platform.h" />
+    <ClInclude Include="src\vulkan\vk_sdk_platform.h" />
+    <ClInclude Include="src\vulkan\vulkan.h" />
+    <ClInclude Include="src\vulkan\vulkan.hpp" />
+    <ClInclude Include="src\vulkan\vulkan_android.h" />
+    <ClInclude Include="src\vulkan\vulkan_core.h" />
+    <ClInclude Include="src\vulkan\vulkan_fuchsia.h" />
+    <ClInclude Include="src\vulkan\vulkan_ggp.h" />
+    <ClInclude Include="src\vulkan\vulkan_ios.h" />
+    <ClInclude Include="src\vulkan\vulkan_macos.h" />
+    <ClInclude Include="src\vulkan\vulkan_metal.h" />
+    <ClInclude Include="src\vulkan\vulkan_vi.h" />
+    <ClInclude Include="src\vulkan\vulkan_wayland.h" />
+    <ClInclude Include="src\vulkan\vulkan_win32.h" />
+    <ClInclude Include="src\vulkan\vulkan_xcb.h" />
+    <ClInclude Include="src\vulkan\vulkan_xlib.h" />
+    <ClInclude Include="src\vulkan\vulkan_xlib_xrandr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\tracy\profiler\build\win32\Tracy.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
