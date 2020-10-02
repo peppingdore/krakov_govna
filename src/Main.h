@@ -17,6 +17,7 @@
 
 #include "Renderer.h"
 #include "Settings.h"
+#include "Level.h"
 
 #if OS_WINDOWS
 
@@ -115,4 +116,12 @@ inline void release_mouse()
 }
 
 #endif
+
+
+
+
+inline Level* loaded_level = NULL;
+
+Level* create_new_level();
+
 

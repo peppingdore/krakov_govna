@@ -11,11 +11,13 @@
 
 #include "Input.h"
 #include "Key_Bindings.h"
-
+#include "Editor.h"
+#include "Asset_Storage.h"
 
 
 #if OS_WINDOWS
 #include <io.h>
+#include <fcntl.h>
 
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "gdi32.lib")
@@ -43,8 +45,6 @@
 #include <immintrin.h>
 
 
-
-#include "Renderer_Vulkan.h"
 
 #include "Ease_Functions.h"
 
@@ -129,12 +129,7 @@ void do_frame()
 
     auto old_renderer_scaling = renderer.scaling;
 
-	if (key_bindings.is_action_type_triggered(Action_Type::Toggle_Usage_Of_DPI))
-	{
-		renderer.use_dpi_scaling = !renderer.use_dpi_scaling;
-	}
-
-	renderer.scaling = renderer.use_dpi_scaling ? windows.window_scaling : 1.0;
+	renderer.scaling = windows.window_scaling;
 
 	if (old_renderer_scaling != renderer.scaling)
 	{
@@ -159,7 +154,19 @@ void do_frame()
 
 
 	renderer.frame_begin();
-	defer { renderer.frame_end(); } ;
+	defer { renderer.frame_end(); };
+
+
+
+
+
+
+	editor.do_frame();
+
+
+
+
+
 }
 
 void terminate()
@@ -168,7 +175,7 @@ void terminate()
 }
 
 
-
+HANDLE stdout_handle;
 
 #if OS_WINDOWS
 LONG WINAPI exception_handler(_EXCEPTION_POINTERS* exc_info)
@@ -269,11 +276,9 @@ int main()
 	}
 #endif
 
-	// Disanble stdio buffering
-	{
-		setvbuf(stdout, NULL, _IONBF, 0);
-		setvbuf(stderr, NULL, _IONBF, 0);
-	}
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0);
+	setvbuf(stdin, NULL, _IONBF, 0);
 
 
 #if !DEBUG
@@ -328,6 +333,7 @@ int main()
 
 			int utf8_length;
 			char* utf8_str = str.to_utf8(c_allocator, &utf8_length);
+
 			fwrite(utf8_str, 1, utf8_length, stdout);
 			fwrite("\n", 1, 1, stdout);
 
@@ -347,6 +353,7 @@ int main()
 
 		main_logger = ctx.logger;
 	}
+
 
 
     // Code below starts using frame_allocator
@@ -723,39 +730,13 @@ int main()
 	time_measurer = create_time_measurer();
 
 	executable_directory = get_executable_directory(c_allocator);
+	set_working_directory(executable_directory, frame_allocator);
 
 
-	// Load assets
-	{
-
-		font_storage.init(c_allocator, make_array<Unicode_String>(c_allocator, {
-			path_concat(c_allocator, executable_directory, Unicode_String(U"fonts"))
-		}));
-
-
-
-		auto textures_folder = path_concat(frame_allocator, executable_directory, Unicode_String(U"assets/textures"));
-
-		auto iter = iterate_files(textures_folder, frame_allocator);
-
-		if (iter.succeeded_to_open())
-		{
-			while (iter.next().is_not_empty())
-			{
-				ZoneScopedN("load texture");
-
-				if (iter.current.ends_with(U".png"))
-				{
-					Unicode_String file_path = path_concat(frame_allocator, textures_folder, iter.current);
-					bool result = renderer.load_texture(file_path);
-					if (!result)
-					{
-						Log(U"Failed to load texture at path: %", file_path);
-					}
-				}
-			}
-		}		
-	}
+	// Supply font directory and load fonts in it.
+	font_storage.init(c_allocator, make_array<Unicode_String>(c_allocator, {
+		path_concat(c_allocator, executable_directory, Unicode_String(U"fonts"))
+	}));
 
 
 	load_settings();
@@ -766,6 +747,22 @@ int main()
 	input.init();
 
 	ui.init();
+
+	asset_storage.init();
+
+	editor.init();
+
+
+
+
+
+
+	loaded_level = create_new_level();
+
+
+
+
+
 
 
 
@@ -874,3 +871,12 @@ inline void handle_os_resize_event(int new_width, int new_height)
 #endif
 }
 
+
+Level* create_new_level()
+{
+	Level level;
+
+	level.entities_storage = Entities_Storage::make();
+
+	return copy(&level, c_allocator);
+}

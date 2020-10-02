@@ -5,3 +5,4 @@
 @MemoryLeak
 @XXX
 @BugRepro
+@NewEntity

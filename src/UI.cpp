@@ -169,11 +169,11 @@ void UI::set_active_masks_as_renderer_masks()
 	{
 		// You're not allowed to combine ui mask stack and renderer mask stack
 
-		renderer.mask_stack.clear();
+		renderer.imm_mask_stack.clear();
 
 		for (Active_Mask mask : active_mask_stack)
 		{
-			renderer.mask_stack.add({
+			renderer.imm_mask_stack.add({
 				.rect = mask.rect,
 				.inversed = mask.inversed,
 			});
@@ -181,10 +181,10 @@ void UI::set_active_masks_as_renderer_masks()
 	}
 	else
 	{
-		renderer.mask_stack.clear();
+		renderer.imm_mask_stack.clear();
 	}
 
-	renderer.recalculate_mask_buffer();
+	renderer.imm_recalculate_mask_buffer();
 }
 
 void UI::save_active_mask_stack_state()
@@ -258,11 +258,11 @@ void UI::draw_text(int x, int y, Unicode_String text, Rect* cull_rect)
 
 	if (cull_rect)
 	{
-		renderer.draw_text_culled(face, text, draw_x, text_y, *cull_rect, parameters.text_color);
+		renderer.imm_draw_text_culled(face, text, draw_x, text_y, *cull_rect, parameters.text_color);
 	}
 	else
 	{
-		renderer.draw_text(face, text, draw_x, text_y, parameters.text_color);
+		renderer.imm_draw_text(face, text, draw_x, text_y, parameters.text_color);
 	}
 }
 
@@ -313,7 +313,7 @@ bool UI::button(Rect rect, rgba color, UI_ID ui_id)
 		darken_color.rgb_value = darken_color.rgb_value * lerp(1.0f, 0.3f, state->darkness);
 	}
 
-	renderer.draw_rect(rect, darken_color);
+	renderer.imm_draw_rect(rect, darken_color);
 
 	return result;
 }
@@ -359,8 +359,8 @@ bool UI::button(Rect rect, Unicode_String text, rgba color, UI_ID ui_id)
 		// @CopyPaste lerp is from ui.button() 
 		darkened_color.rgb_value = darkened_color.rgb_value * lerp(1.0f, 0.3f, state->darkness);
 
-		renderer.draw_rect_with_alpha_fade(Rect::make(rect.x_left, rect.y_bottom, rect.x_left + alpha_fade_width, rect.y_top), darkened_color, 255, 0);
-		renderer.draw_rect_with_alpha_fade(Rect::make(rect.x_right - alpha_fade_width, rect.y_bottom, rect.x_right, rect.y_top), darkened_color, 0, 255);
+		renderer.imm_draw_rect_with_alpha_fade(Rect::make(rect.x_left, rect.y_bottom, rect.x_left + alpha_fade_width, rect.y_top), darkened_color, 255, 0);
+		renderer.imm_draw_rect_with_alpha_fade(Rect::make(rect.x_right - alpha_fade_width, rect.y_bottom, rect.x_right, rect.y_top), darkened_color, 0, 255);
 	}
 
 	return result;
@@ -391,11 +391,11 @@ bool UI::checkbox(Rect rect, bool value, UI_ID ui_id)
 
 	if (value)
 	{
-		renderer.draw_rect(rect, parameters.checkbox_background_color);
+		renderer.imm_draw_rect(rect, parameters.checkbox_background_color);
 	}
 	else
 	{
-		renderer.draw_rect(rect, parameters.checkbox_frame_color); // @Performance: borders just should be calculated properly non filling the whole bunch of useless pixels
+		renderer.imm_draw_rect(rect, parameters.checkbox_frame_color); // @Performance: borders just should be calculated properly non filling the whole bunch of useless pixels
 
 		Rect inner_rect = rect;
 		int border_size = renderer.scaled(1);
@@ -404,7 +404,7 @@ bool UI::checkbox(Rect rect, bool value, UI_ID ui_id)
 		inner_rect.x_right  -= border_size;
 		inner_rect.y_top    -= border_size;
 
-		renderer.draw_rect(inner_rect, parameters.checkbox_background_color);
+		renderer.imm_draw_rect(inner_rect, parameters.checkbox_background_color);
 	}
 
 
@@ -413,7 +413,7 @@ bool UI::checkbox(Rect rect, bool value, UI_ID ui_id)
 		auto face = get_font_face();
 		Glyph tick_glyph = face->request_glyph(U'\x2713');
 
-		renderer.draw_glyph(&tick_glyph, rect.center_x() - tick_glyph.width / 2, rect.center_y() - tick_glyph.height / 2, parameters.checkbox_tick_color);
+		renderer.imm_draw_glyph(&tick_glyph, rect.center_x() - tick_glyph.width / 2, rect.center_y() - tick_glyph.height / 2, parameters.checkbox_tick_color);
 	}
 
 	return result;
@@ -1183,14 +1183,14 @@ bool UI::text_editor(Rect rect, Unicode_String text, Unicode_String* out_result,
 
 				if (i >= selection_start && i < selection_end)
 				{
-					renderer.draw_rect(char_background_rect, ui.parameters.text_selection_background);
+					renderer.imm_draw_rect(char_background_rect, ui.parameters.text_selection_background);
 				}
 
 				if (glyph_iterator.render_glyph)
 				{
 					Glyph glyph = glyph_iterator.current_glyph;
 					// :GlyphLocalCoords:
-					renderer.draw_glyph(&glyph, x + glyph.left_offset, y - (glyph.height - glyph.top_offset), text_color);
+					renderer.imm_draw_glyph(&glyph, x + glyph.left_offset, y - (glyph.height - glyph.top_offset), text_color);
 				}
 			}
 		}
@@ -1204,7 +1204,7 @@ bool UI::text_editor(Rect rect, Unicode_String text, Unicode_String* out_result,
 			
 			get_cursor_coordinates(&cursor_x_left, &cursor_y_top, &cursor_left_text_width);
 			
-			renderer.draw_rect(Rect::make(cursor_x_left, cursor_y_top - face->line_spacing, cursor_x_left + renderer.scaled(parameters.cursor_width), cursor_y_top), parameters.cursor_color);
+			renderer.imm_draw_rect(Rect::make(cursor_x_left, cursor_y_top - face->line_spacing, cursor_x_left + renderer.scaled(parameters.cursor_width), cursor_y_top), parameters.cursor_color);
 		}
 	}
 
@@ -1275,21 +1275,21 @@ bool UI::dropdown(Rect rect, int selected, Dynamic_Array<Unicode_String> options
 
 
 
-	renderer.draw_rect(rect, parameters.dropdown_background_color);
+	renderer.imm_draw_rect(rect, parameters.dropdown_background_color);
 
 	scoped_set_and_revert(parameters.text_alignment, Text_Alignment::Left);
 	scoped_set_and_revert(parameters.center_text_vertically, true);
 
 
 
-	renderer.push_mask({
+	renderer.imm_push_mask({
 		.rect = rect,
 		.inversed = false
 	});
 
 	draw_text(rect.x_left + parameters.dropdown_text_margin_left, rect.center_y(), *options[selected]);
 
-	renderer.pop_mask();
+	renderer.imm_pop_mask();
 
 
 
@@ -1306,14 +1306,14 @@ bool UI::dropdown(Rect rect, int selected, Dynamic_Array<Unicode_String> options
 		int fadeout_x_left = rect.x_right - parameters.dropdown_arrow_margin_right * 4 - parameters.dropdown_arrow_size;
 		int fadeout_x_right = rect.x_right - parameters.dropdown_arrow_margin_right - parameters.dropdown_arrow_size;
 
-		renderer.draw_rect_with_alpha_fade(Rect::make(fadeout_x_left,
+		renderer.imm_draw_rect_with_alpha_fade(Rect::make(fadeout_x_left,
 			rect.y_bottom, fadeout_x_right, rect.y_top), parameters.dropdown_background_color, 0, 255);
 
-		renderer.draw_rect(Rect::make(fadeout_x_right,
+		renderer.imm_draw_rect(Rect::make(fadeout_x_right,
 			rect.y_bottom, rect.x_right, rect.y_top), parameters.dropdown_background_color);
 
 		// Draw arrow
-		renderer.draw_rect(Rect::make(
+		renderer.imm_draw_rect(Rect::make(
 			rect.x_right - parameters.dropdown_arrow_margin_right - parameters.dropdown_arrow_size,
 			rect.center_y() - parameters.dropdown_arrow_size / 2,
 			rect.x_right - parameters.dropdown_arrow_margin_right,
@@ -1417,13 +1417,13 @@ bool UI::dropdown(Rect rect, int selected, Dynamic_Array<Unicode_String> options
 					if (!rect.is_point_inside(input.old_mouse_x, input.old_mouse_y) && option_rect.is_point_inside(input.old_mouse_x, input.old_mouse_y))
 					{
 						hovering = true;
-						renderer.draw_rect(option_rect, i == selected ? parameters.dropdown_item_hover_and_selected_background : parameters.dropdown_item_hover_background);
+						renderer.imm_draw_rect(option_rect, i == selected ? parameters.dropdown_item_hover_and_selected_background : parameters.dropdown_item_hover_background);
 					}
 				}
 
 				if (!hovering && i == selected)
 				{
-					renderer.draw_rect(option_rect, parameters.dropdown_item_selected_background);
+					renderer.imm_draw_rect(option_rect, parameters.dropdown_item_selected_background);
 				}
 
 				if (down == ui_id)
@@ -1467,7 +1467,7 @@ Scroll_Region_Result UI::scroll_region(Rect rect, int content_height, int conten
 	get_or_create_ui_item_data(ui_id, &state);
 
 
-	renderer.draw_rect(rect, parameters.scroll_region_background);
+	renderer.imm_draw_rect(rect, parameters.scroll_region_background);
 	
 	bool do_show_vertical_scrollbar = content_height > rect.height();
 
@@ -1638,8 +1638,8 @@ Scroll_Region_Result UI::scroll_region(Rect rect, int content_height, int conten
 		}
 
 
-		renderer.draw_rect(vertical_scrollbar_rect, parameters.vertical_scrollbar_background_color);
-		renderer.draw_rect(vertical_scrollgrip_rect, scrollgrip_color);
+		renderer.imm_draw_rect(vertical_scrollbar_rect, parameters.vertical_scrollbar_background_color);
+		renderer.imm_draw_rect(vertical_scrollgrip_rect, scrollgrip_color);
 	}
 
 	if (do_show_horizontal_scrollbar)
@@ -1656,8 +1656,8 @@ Scroll_Region_Result UI::scroll_region(Rect rect, int content_height, int conten
 		}
 
 
-		renderer.draw_rect(horizontal_scrollbar_rect, parameters.horizontal_scrollbar_background_color);
-		renderer.draw_rect(horizontal_scrollgrip_rect, scrollgrip_color);
+		renderer.imm_draw_rect(horizontal_scrollbar_rect, parameters.horizontal_scrollbar_background_color);
+		renderer.imm_draw_rect(horizontal_scrollgrip_rect, scrollgrip_color);
 	}
 
 

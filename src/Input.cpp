@@ -370,7 +370,7 @@ void Input::pre_frame()
 		mouse_y = renderer.height - mouse_y;
 
     #endif
-	}
+		}
 
 	mouse_x_delta = mouse_x - old_mouse_x;
 	mouse_y_delta = mouse_y - old_mouse_y;

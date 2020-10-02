@@ -176,10 +176,10 @@ def main():
 	if os.name == 'nt':
 		build_options.use_clang_cl = True
 
-		build_options.use_windows_dynamic_crt = False
+		build_options.use_windows_dynamic_crt = True
 		build_options.use_windows_crt_debug_version = build_type != Build_Type.Shipment
 
-		build_options.use_windows_subsystem = True
+		build_options.use_windows_subsystem = False
 
 		if 'msvc' in sys.argv:
 			build_options.use_msvc = True
@@ -226,6 +226,8 @@ def main():
 		print(f'{ascii_colors.yellow.background}-fsanitize=thread{ascii_colors.reset_background_color}')
 
 
+
+	build_options.additional_clang_flags.append('-ferror-limit=5')
 
 
 	result = builder.build(build_options)
